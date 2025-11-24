@@ -8,7 +8,7 @@ import org.openxava.util.*;
  * Con OpenXava Studio/Eclipse: Botón derecho del ratón > Run As > Java Application
  */
 
-public class odge {
+public class Odge {
 
 	public static void main(String[] args) throws Exception {
 		DBServer.start("odge-db"); // Para usar tu propia base de datos comenta esta línea y configura src/main/webapp/META-INF/context.xml
