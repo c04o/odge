@@ -7,31 +7,31 @@ import org.openxava.annotations.Required;
 
 import javax.persistence.*;
 
-@Entity
+@Entity // Indica que esta clase es una tabla en la base de datos
 @Table(name = "personal_limpieza")
 @Getter
 @Setter
 public class PersonalLimpieza {
 
     @Id
-    @GeneratedValue(generator = "system-uuid")
+    @GeneratedValue(generator = "system-uuid") // Genera un UUID único para el registro
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     @Column(length = 36)
-    private String oid;
+    private String oid; // Identificador principal
 
-    @Required(message = "El nombre del personal de limpieza no puede quedar vacío.")
+    @Required(message = "El nombre del personal de limpieza no puede quedar vacío.") // Validación en OpenXava
     @Column(length = 120, nullable = false)
-    private String nombre;
+    private String nombre; // Nombre completo del personal
 
     @Column(length = 30)
-    private String telefono;
+    private String telefono; // Número de contacto (opcional)
 
     @Column(length = 100)
-    private String correo;
+    private String correo; // Correo electrónico (opcional)
 
     @Column(length = 80)
-    private String turno; // p. ej. "Mañana", "Tarde", "08:00-12:00"
+    private String turno; // Ej: "Mañana", "Tarde", "08:00-12:00"
 
     @Column(columnDefinition = "text")
-    private String notas;
+    private String notas; // Observaciones adicionales
 }
