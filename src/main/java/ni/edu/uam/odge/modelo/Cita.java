@@ -12,10 +12,12 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-@Entity
+@Entity // Marca esta clase como entidad JPA (tabla en la base de datos)
 @Table(name = "citas",
         uniqueConstraints = {
+                // Evita que un doctor tenga dos citas a la misma hora
                 @UniqueConstraint(name = "UK_DOCTOR_DATETIME", columnNames = {"doctor_oid", "appointment_datetime"}),
+                // Evita que un paciente tenga dos citas a la misma hora
                 @UniqueConstraint(name = "UK_PATIENT_DATETIME", columnNames = {"paciente_oid", "appointment_datetime"})
         })
 @Getter
@@ -23,40 +25,41 @@ import java.util.List;
 public class Cita {
 
     @Id
-    @GeneratedValue(generator = "system-uuid")
+    @GeneratedValue(generator = "system-uuid") // Genera UUID como ID
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     @Column(length = 36)
-    @Hidden
+    @Hidden // Oculta el campo en la UI
     private String oid;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false) // Muchas citas pueden pertenecer a un paciente
     @JoinColumn(name = "paciente_oid")
-    @Required
+    @Required // Campo obligatorio en OpenXava
     private Paciente paciente;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false) // Muchas citas pueden ser atendidas por un doctor
     @JoinColumn(name = "doctor_oid")
-    @Required
+    @Required // Obligatorio
     private Doctor doctor;
 
     @Column(name = "appointment_datetime", nullable = false)
-    @Required
+    @Required // Fecha/hora obligatoria
     private LocalDateTime appointmentDateTime;
 
     @Column(length = 20, nullable = false)
     @Required
-    private String estado; // pendiente, confirmada, atendida, cancelada
+    private String estado; // Estado de la cita (pendiente, confirmada, etc.)
 
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "text") // Campo largo para texto libre
     private String observaciones;
 
     @OneToMany(mappedBy = "cita", cascade = CascadeType.ALL, orphanRemoval = true)
-    @ListProperties("material.nombre, quantity")
+    @ListProperties("material.nombre, quantity") // Qué mostrar en la lista de materiales
     private List<MaterialCita> materiales;
 
     @PrePersist
     @PreUpdate
     private void normalizarFechaHora() {
+        // Redondea la fecha a la hora exacta (quita minutos y segundos)
         if (this.appointmentDateTime != null) {
             this.appointmentDateTime = this.appointmentDateTime.truncatedTo(ChronoUnit.HOURS);
         }
