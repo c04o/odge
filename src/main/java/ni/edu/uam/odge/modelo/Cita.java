@@ -6,9 +6,12 @@ import org.hibernate.annotations.GenericGenerator;
 import org.openxava.annotations.Hidden;
 import org.openxava.annotations.ListProperties;
 import org.openxava.annotations.Required;
+import org.openxava.validators.ValidationException;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -54,6 +57,30 @@ public class Cita {
     @ListProperties("material.nombre, quantity")
     private List<MaterialCita> materiales;
 
+    // ---------------- VALIDACIÓN FECHA Y HORA ----------------
+    @PreUpdate
+    private void validarFechaHora() {
+
+        if (appointmentDateTime == null) return;
+
+        LocalDate hoy = LocalDate.now();
+        LocalTime ahora = LocalTime.now();
+
+        LocalDate fechaCita = appointmentDateTime.toLocalDate();
+        LocalTime horaCita = appointmentDateTime.toLocalTime();
+
+        // Fecha en el pasado ? ERROR
+        if (fechaCita.isBefore(hoy)) {
+            throw new ValidationException("La fecha de la cita no puede ser anterior a hoy.");
+        }
+
+        // Hoy pero hora en el pasado ? ERROR
+        if (fechaCita.isEqual(hoy) && horaCita.isBefore(ahora)) {
+            throw new ValidationException("La hora de la cita no puede ser anterior a la hora actual.");
+        }
+    }
+
+    // ---------------- NORMALIZAR A HORAS REDONDAS ----------------
     @PrePersist
     @PreUpdate
     private void normalizarFechaHora() {
