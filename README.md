@@ -1,47 +1,82 @@
 # 🦷 ODGE: Sistema de Gestión Odontológica  
 **Odontological Management System**
 
-ODGE es una aplicación web sencilla para la gestión de clínicas y consultorios odontológicos desarrollada con **OpenXava**.
+ODGE es una aplicación web desarrollada con **OpenXava** para gestionar de forma integral clínicas y consultorios odontológicos. El sistema permite administrar pacientes, doctores, citas, inventario, personal de limpieza, historial clínico y estadísticas en un entorno centralizado y fácil de usar.
 
-Elaborado por estudiantes de segundo año de la carrera de **Ingeniería en Sistemas** de la **Universidad Americana**.
-
-El sistema permite administrar las entidades principales relacionadas con la operación diaria de una clínica dental, enfocándose en la gestión de citas, pacientes, doctores y el control de inventario de materiales.
+Proyecto elaborado por estudiantes de segundo año de **Ingeniería en Sistemas** de la **Universidad Americana**.
 
 ---
 
 ## ✨ Características Principales
 
 ### 🧑‍⚕️ Administración de Pacientes
-- Registro de información personal y de contacto.  
-- Validación para asegurar que la fecha de nacimiento no sea posterior a la fecha actual (`Paciente.java`).
+- Registro de datos personales y de contacto.  
+- Validación para impedir fechas de nacimiento posteriores a la fecha actual.  
+- Acceso al historial de citas del paciente.  
+- **Historial clínico detallado**, incluyendo diagnósticos, procedimientos, observaciones y materiales utilizados.
+
+---
 
 ### 👨‍⚕️ Gestión de Doctores (Odontólogos)
-- Registro de nombre, código, especialidad y disponibilidad.  
-- Validación del formato de disponibilidad (ej: `L-V 08:00-16:00`) para asegurar coherencia horaria (`Doctor.java`).
+- Registro de nombre, código profesional único y especialidad.  
+- Configuración de disponibilidad laboral (ej. `L-V 08:00-16:00`).  
+- Asociación directa con las citas que atienden.  
+- Vista de desempeño dentro del dashboard estadístico.
 
-### 📅 Gestión de Citas
-- Asignación de citas a un Paciente y un Doctor.  
-- Registro de fecha y hora (`appointmentDateTime`) y estado (pendiente, confirmada, atendida, cancelada).  
-- Unicidad de la cita por:
-  - **Doctor + Fecha/Hora**  
-  - **Paciente + Fecha/Hora**  
-  (Restricciones `UK_DOCTOR_DATETIME` y `UK_PATIENT_DATETIME` en `Cita.java`)
-- Normalización de la fecha/hora truncándola a la hora (redondeo hacia abajo) (`Cita.java`).  
-- Manejo de materiales utilizados en la cita (`MaterialCita.java`).
+---
+
+### 📅 Gestión de Citas Odontológicas
+- Asignación de citas a **Paciente + Doctor + Fecha/Hora**.  
+- Estados: *pendiente, confirmada, atendida, cancelada*.  
+- Restricciones de unicidad:
+  - **Doctor + Fecha/Hora**
+  - **Paciente + Fecha/Hora**
+- Prevención automática de:
+  - citas duplicadas,  
+  - horarios fuera de disponibilidad,  
+  - citas en fechas pasadas,  
+  - traslapes en la agenda.  
+- Registro y consumo de materiales por cita mediante la entidad `MaterialCita`.  
+
+---
 
 ### 📦 Control de Inventario de Materiales
-- Registro de materiales, categoría, stock actual y stock mínimo (`Material.java`).  
-- Validación para asegurar que el stock actual y el stock mínimo no sean negativos.
+- Registro de materiales, categoría, proveedor, stock actual y mínimo.  
+- Validación que impide asignar valores negativos.  
+- Alertas por bajo inventario.  
+- Descuento automático del stock según los materiales utilizados en las citas.
 
-### 🧹 Registro de Personal de Limpieza
-- Información del personal: nombre, teléfono, correo y turno (`PersonalLimpieza.java`).
+---
+
+### 🧹 Gestión de Personal de Limpieza
+- Registro de nombre, turno, teléfono y correo.  
+- Administración básica del personal operativo.
+
+---
+
+## 📊 Dashboard Estadístico
+El sistema incluye un panel de estadísticas para visualización rápida:
+
+- **Citas del día**: citas agendadas, completadas y canceladas.  
+- **Consumo de materiales**: materiales más utilizados por fecha o por especialidad.  
+- **Desempeño del odontólogo**: citas atendidas, tasa de puntualidad, carga de trabajo.
+
+---
+
+## 🔐 Sistema de Roles
+ODGE incorpora control de acceso según permisos:
+
+- **Administrador**: acceso total al sistema.  
+- **Recepcionista**: gestión de citas, pacientes y agenda.  
+- **Odontólogo**: acceso a sus citas, historial clínico y registro de materiales por cita.
 
 ---
 
 ## 🛠️ Tecnologías Utilizadas
-- **OpenXava**: Framework de desarrollo rápido para aplicaciones Java.  
-- **JPA / Hibernate**: Persistencia y mapeo objeto-relacional.  
-- **Lombok**: Reducción de código repetitivo (getters y setters).  
-- **Java 8+**
+- **OpenXava**  
+- **Java 8+**  
+- **JPA / Hibernate**  
+- **Lombok**  
+- **MySQL / PostgreSQL**  
 
 ---
