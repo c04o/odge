@@ -3,22 +3,45 @@
 <!DOCTYPE controladores SYSTEM "dtds/controladores.dtd">
 
 <controladores>
-    
-    <!-- Variable de entorno: 
-    <var-entorno nombre="odge_ANYO_DEFECTO" valor="2015"/>
-    -->
-    
-    <!-- Objeto de sesión:
-    <Objeto nombre="odge_anyoActivo" clase="java.lang.Integer" valor="2015" 
-            ambito="global"/>
-    -->
-    
-    <!-- Controlador:
-    <controlador nombre="Profesor">
+
+    <!-- Paciente -->
+    <controlador nombre="PacienteReport">
         <hereda-de controlador="Typical"/>
-        <accion nombre="new" icono="library-plus" atajo-de-teclado="Control N" 
-                clase="acciones.CrearProfesor"/>        
+        <accion nombre="imprimirFicha"
+                icono="printer"
+                clase="acciones.PrintPacienteReportAction"/>
     </controlador>
-    -->
-    
+
+    <!-- Doctor -->
+    <controlador nombre="DoctorReport">
+        <hereda-de controlador="Typical"/>
+        <accion nombre="imprimirFicha"
+                icono="printer"
+                clase="acciones.PrintDoctorReportAction"/>
+    </controlador>
+
+    <!-- Material -->
+    <controlador nombre="MaterialReport">
+        <hereda-de controlador="Typical"/>
+        <accion nombre="imprimirFicha"
+                icono="printer"
+                clase="acciones.PrintMaterialReportAction"/>
+    </controlador>
+
+    <!-- Personal de limpieza -->
+    <controlador nombre="PersonalLimpiezaReport">
+        <hereda-de controlador="Typical"/>
+        <accion nombre="imprimirFicha"
+                icono="printer"
+                clase="acciones.PrintPersonalLimpiezaReportAction"/>
+    </controlador>
+
+    <!-- Cita -->
+    <controlador nombre="CitaReport">
+        <hereda-de controlador="Typical"/>
+        <accion nombre="imprimirFicha"
+                icono="printer"
+                clase="acciones.PrintCitaReportAction"/>
+    </controlador>
+
 </controladores>

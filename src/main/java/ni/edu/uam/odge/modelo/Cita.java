@@ -49,7 +49,8 @@ public class Cita {
     @Required
     private String estado; // Estado de la cita (pendiente, confirmada, etc.)
 
-    @Column(columnDefinition = "text") // Campo largo para texto libre
+    @Column(columnDefinition = "text")
+    // Campo largo para texto libre
     private String observaciones;
 
     @OneToMany(mappedBy = "cita", cascade = CascadeType.ALL, orphanRemoval = true)

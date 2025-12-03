@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.openxava.annotations.Required;
+import org.openxava.annotations.Stereotype;
 
 import javax.persistence.*;
 
@@ -32,6 +33,8 @@ public class PersonalLimpieza {
     @Column(length = 80)
     private String turno; // Ej: "Mañana", "Tarde", "08:00-12:00"
 
-    @Column(columnDefinition = "text")
-    private String notas; // Observaciones adicionales
+    @Stereotype("MEMO")
+    @Column(length=500)
+    private String notas;
+
 }

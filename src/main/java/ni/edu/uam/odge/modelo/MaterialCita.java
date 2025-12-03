@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.openxava.annotations.Hidden;
 import org.openxava.annotations.Required;
+import org.openxava.annotations.Stereotype;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -36,8 +37,10 @@ public class MaterialCita {
     @Column(nullable = false)
     private Integer quantity = 1; // Cantidad de material consumido
 
-    @Column(columnDefinition = "text")
-    private String notes; // Notas adicionales (opcional)
+    @Stereotype("MEMO")
+    @Column(length=500)
+    private String notas;
+
 
     @PrePersist
     @PreUpdate

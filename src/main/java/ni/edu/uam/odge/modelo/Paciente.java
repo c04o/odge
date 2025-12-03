@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.openxava.annotations.Required;
+import org.openxava.annotations.Stereotype;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -37,8 +38,10 @@ public class Paciente {
     @Column(length = 100)
     private String email; // Correo opcional
 
-    @Column(columnDefinition = "text")
-    private String notas; // Notas largas sobre el paciente
+    @Stereotype("MEMO")
+    @Column(length=500)
+    private String notas;
+
 
     @PrePersist
     @PreUpdate

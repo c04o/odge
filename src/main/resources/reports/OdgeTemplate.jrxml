@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PacienteBaseReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2788b6f3-81ce-46fc-ab0e-0ba3a6efd1c6">
+	<parameter name="fechaEmision" class="java.util.Date"/>
+	<parameter name="codigoReporte" class="java.lang.String"/>
+	<parameter name="tituloReporte" class="java.lang.String"/>
+	<parameter name="pacienteIdentificacion" class="java.lang.String"/>
+	<parameter name="pacienteNombre" class="java.lang.String"/>
+	<parameter name="pacienteFechaNacimiento" class="java.lang.String"/>
+	<parameter name="pacienteTelefono" class="java.lang.String"/>
+	<parameter name="pacienteCorreo" class="java.lang.String"/>
+	<parameter name="pacienteNotas" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="87" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="89" backcolor="#0E97A1" uuid="7ddc3b90-0130-4442-a39c-2d8018a9d829"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="9" width="390" height="30" uuid="d050dcf0-106d-4d0a-942c-f29700dbf49d"/>
+				<textElement>
+					<font fontName="Lucida Console" size="16"/>
+				</textElement>
+				<text><![CDATA[ODGE – Sistema de Gestión Odontológica]]></text>
+			</staticText>
+			<image>
+				<reportElement x="480" y="-11" width="74" height="70" uuid="6fd582d4-c999-4442-830b-07953e79b473"/>
+				<imageExpression><![CDATA["logo_odge.png"
+]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="300" y="12" width="260" height="30" uuid="bb4680ea-8344-40ad-86fa-9a4199c17be2"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Fecha de emisión: " + $P{fechaEmision}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="12" width="100" height="30" uuid="3dd529f5-4386-43b4-8e90-d73f16a6e6eb"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tituloReporte}
+]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="10" width="100" height="30" uuid="14a7380e-1db0-4376-b911-ae0d7c9c6010"/>
+				<textFieldExpression><![CDATA[$P{pacienteNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="10" width="100" height="30" uuid="fac75f04-4ace-435b-a877-88c4d7920935"/>
+				<textFieldExpression><![CDATA[$P{pacienteIdentificacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="195" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="10" width="100" height="30" uuid="3662e223-6002-4643-a302-29eda86a75a1"/>
+				<textFieldExpression><![CDATA[$P{pacienteTelefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="60" width="100" height="30" uuid="f34f7bcd-c5e0-4aae-8cbc-75ef918a6838"/>
+				<textFieldExpression><![CDATA[$P{pacienteCorreo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="110" width="100" height="30" uuid="43a7b5fc-39bf-4814-9a43-d9be8895e30f"/>
+				<textFieldExpression><![CDATA[$P{pacienteCorreo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="10" width="310" height="130" uuid="d3fa6385-2f4a-4d9b-801f-882c1088de12"/>
+				<textFieldExpression><![CDATA[$P{pacienteNotas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="60" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="20" width="100" height="30" uuid="a756c20c-33e2-49e4-b80d-cbe3efb415a7"/>
+				<textFieldExpression><![CDATA["CODIGO: " + $P{codigoReporte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="25" width="375" height="20" uuid="6ec189e9-19c9-4865-8c77-7cc68e54036e"/>
+				<textFieldExpression><![CDATA["Sistema ODGE – Universidad Americana – Página" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="53" splitType="Stretch"/>
+	</summary>
+</jasperReport>

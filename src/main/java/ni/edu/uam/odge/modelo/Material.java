@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.openxava.annotations.Required;
+import org.openxava.annotations.Stereotype;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -36,8 +37,10 @@ public class Material {
     @Column(nullable = false)
     private Integer stockMinimo = 0; // Cantidad mínima recomendada
 
-    @Column(columnDefinition = "text")
-    private String notas; // Notas largas u observaciones
+    @Stereotype("MEMO")
+    @Column(length=500)
+    private String notas;
+
 
     @PrePersist
     @PreUpdate

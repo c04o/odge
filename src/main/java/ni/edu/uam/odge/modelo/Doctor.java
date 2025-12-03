@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.openxava.annotations.Required;
+import org.openxava.annotations.Stereotype;
 
 import javax.persistence.*;
 import java.util.regex.Pattern;
@@ -35,8 +36,9 @@ public class Doctor {
     private String disponibilidad;
     // Ejemplo: "L-V 08:00-16:00" ? horario base del odontólogo
 
-    @Column(columnDefinition = "text")
-    private String notas; // Campo largo para notas adicionales
+    @Stereotype("MEMO")
+    @Column(length=500)
+    private String notas;
 
     // Expresión regular para validar el formato del horario
     // Acepta: "L-V 08:00-16:00", "Lunes 08:00-12:00", "Lunes-Viernes 08:00-16:00", etc.

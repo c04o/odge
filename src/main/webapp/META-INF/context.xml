@@ -36,7 +36,7 @@
 	<!-- PostgreSQL -->
 	<Resource name="jdbc/odgeDS" auth="Container" type="javax.sql.DataSource"
 	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
-	      username="postgres" password="" 
+	      username="postgres" password="1234"
 	      driverClassName="org.postgresql.Driver" 
 	      url="jdbc:postgresql://localhost/odgedb"/>
 	

@@ -2,23 +2,40 @@
 
 <!DOCTYPE aplicacion SYSTEM "dtds/aplicacion.dtd">
 
-<aplicacion nombre="odge"> 
-	
-	<!--
-	Un módulo por defecto se asume para cada
-	controlador en <modulo-defecto/> 
-	-->
-	<modulo-defecto>		  
-		<controlador nombre="Typical"/>		
-	</modulo-defecto>
-	
-	<!--
-	Podemos definir módulos adicionales, por ejemplo: 	
-	<modulo nombre="ProfesorSoloLectura">
-		<modelo nombre="Profesor"/>
-		<controlador nombre="Print"/>
-	</modulo>		
-	-->	  
-		
-</aplicacion>
+<aplicacion nombre="odge">
 
+    <modulo-defecto>
+        <controlador nombre="Typical"/>
+    </modulo-defecto>
+
+    <modulo nombre="Paciente">
+        <modelo nombre="Paciente"/>
+        <controlador nombre="Typical"/>
+        <controlador nombre="PacienteReport"/>
+    </modulo>
+
+    <modulo nombre="Doctor">
+        <modelo nombre="Doctor"/>
+        <controlador nombre="Typical"/>
+        <controlador nombre="DoctorReport"/>
+    </modulo>
+
+    <modulo nombre="Material">
+        <modelo nombre="Material"/>
+        <controlador nombre="Typical"/>
+        <controlador nombre="MaterialReport"/>
+    </modulo>
+
+    <modulo nombre="PersonalLimpieza">
+        <modelo nombre="PersonalLimpieza"/>
+        <controlador nombre="Typical"/>
+        <controlador nombre="PersonalLimpiezaReport"/>
+    </modulo>
+
+    <modulo nombre="Cita">
+        <modelo nombre="Cita"/>
+        <controlador nombre="Typical"/>
+        <controlador nombre="CitaReport"/>
+    </modulo>
+
+</aplicacion>
