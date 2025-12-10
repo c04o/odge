@@ -2,21 +2,21 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
-              name="OdgeFichaBase"
+              name="CitaFicha"
               pageWidth="595" pageHeight="842"
               columnWidth="555" leftMargin="20" rightMargin="20"
-              topMargin="20" bottomMargin="20"
-              uuid="11111111-2222-3333-4444-555555555555">
+              topMargin="20" bottomMargin="20">
 
-    <parameter name="fechaEmision"             class="java.util.Date"/>
-    <parameter name="codigoReporte"            class="java.lang.String"/>
-    <parameter name="tituloReporte"            class="java.lang.String"/>
-    <parameter name="pacienteIdentificacion"   class="java.lang.String"/>
-    <parameter name="pacienteNombre"           class="java.lang.String"/>
-    <parameter name="pacienteFechaNacimiento"  class="java.lang.String"/>
-    <parameter name="pacienteTelefono"         class="java.lang.String"/>
-    <parameter name="pacienteCorreo"           class="java.lang.String"/>
-    <parameter name="pacienteNotas"            class="java.lang.String"/>
+    <parameter name="fechaEmision"    class="java.util.Date"/>
+    <parameter name="codigoReporte"   class="java.lang.String"/>
+    <parameter name="tituloReporte"   class="java.lang.String"/>
+
+    <parameter name="citaPaciente"        class="java.lang.String"/>
+    <parameter name="citaDoctor"          class="java.lang.String"/>
+    <parameter name="citaCodigo"          class="java.lang.String"/>
+    <parameter name="citaEstado"          class="java.lang.String"/>
+    <parameter name="citaFecha"           class="java.lang.String"/>
+    <parameter name="citaObservaciones"   class="java.lang.String"/>
 
     <queryString><![CDATA[]]></queryString>
 
@@ -29,15 +29,10 @@
             <rectangle>
                 <reportElement x="-20" y="-20" width="595" height="90"
                                mode="Opaque" backcolor="#0E97A1"/>
-
-                <graphicElement>
-                    <pen lineWidth="0.0"/>
-                </graphicElement>
             </rectangle>
 
             <staticText>
-                <reportElement x="0" y="10" width="390" height="24"
-                               />
+                <reportElement x="0" y="10" width="390" height="24"/>
                 <textElement>
                     <font fontName="Lucida Console" size="16" isBold="true"/>
                 </textElement>
@@ -45,8 +40,7 @@
             </staticText>
 
             <image>
-                <reportElement x="480" y="-5" width="74" height="60"
-                               />
+                <reportElement x="480" y="-5" width="74" height="60"/>
                 <imageExpression><![CDATA["logo_odge.png"]]></imageExpression>
             </image>
         </band>
@@ -55,8 +49,7 @@
     <pageHeader>
         <band height="40" splitType="Stretch">
             <textField>
-                <reportElement x="0" y="8" width="260" height="20"
-                               />
+                <reportElement x="0" y="8" width="260" height="20"/>
                 <textElement>
                     <font size="13" isBold="true"/>
                 </textElement>
@@ -64,8 +57,7 @@
             </textField>
 
             <textField pattern="dd/MM/yyyy HH:mm">
-                <reportElement x="260" y="8" width="295" height="20"
-                               />
+                <reportElement x="260" y="8" width="295" height="20"/>
                 <textElement textAlignment="Right">
                     <font size="11"/>
                 </textElement>
@@ -74,102 +66,86 @@
         </band>
     </pageHeader>
 
-    <columnHeader>
-        <band height="50" splitType="Stretch">
-            <staticText>
-                <reportElement x="0" y="5" width="80" height="18"
-                               />
-                <textElement>
-                    <font isBold="true"/>
-                </textElement>
-                <text><![CDATA[Nombre:]]></text>
-            </staticText>
-            <textField>
-                <reportElement x="80" y="5" width="350" height="18"
-                               />
-                <textElement>
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <textFieldExpression><![CDATA[$P{pacienteNombre}]]></textFieldExpression>
-            </textField>
-
-            <staticText>
-                <reportElement x="0" y="27" width="80" height="18"
-                               />
-                <textElement>
-                    <font isBold="true"/>
-                </textElement>
-                <text><![CDATA[Identificación:]]></text>
-            </staticText>
-            <textField>
-                <reportElement x="80" y="27" width="200" height="18"
-                               />
-                <textFieldExpression><![CDATA[$P{pacienteIdentificacion}]]></textFieldExpression>
-            </textField>
-        </band>
-    </columnHeader>
-
     <detail>
-        <band height="170" splitType="Stretch">
+        <band height="200" splitType="Stretch">
 
             <staticText>
-                <reportElement x="0" y="0" width="100" height="16"
-                               />
+                <reportElement x="0" y="0" width="110" height="16"/>
                 <textElement>
                     <font isBold="true"/>
                 </textElement>
-                <text><![CDATA[Fecha nac.:]]></text>
+                <text><![CDATA[Paciente:]]></text>
             </staticText>
             <textField>
-                <reportElement x="100" y="0" width="130" height="16"
-                               />
-                <textFieldExpression><![CDATA[$P{pacienteFechaNacimiento}]]></textFieldExpression>
+                <reportElement x="120" y="0" width="400" height="16"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{citaPaciente}]]></textFieldExpression>
             </textField>
 
             <staticText>
-                <reportElement x="0" y="25" width="100" height="16"
-                               />
+                <reportElement x="0" y="24" width="110" height="16"/>
                 <textElement>
                     <font isBold="true"/>
                 </textElement>
-                <text><![CDATA[Teléfono:]]></text>
+                <text><![CDATA[Doctor:]]></text>
             </staticText>
             <textField>
-                <reportElement x="100" y="25" width="130" height="16"
-                               />
-                <textFieldExpression><![CDATA[$P{pacienteTelefono}]]></textFieldExpression>
+                <reportElement x="120" y="24" width="400" height="16"/>
+                <textFieldExpression><![CDATA[$P{citaDoctor}]]></textFieldExpression>
             </textField>
 
             <staticText>
-                <reportElement x="0" y="50" width="100" height="16"
-                              />
+                <reportElement x="0" y="48" width="110" height="16"/>
                 <textElement>
                     <font isBold="true"/>
                 </textElement>
-                <text><![CDATA[Correo:]]></text>
+                <text><![CDATA[Código cita:]]></text>
             </staticText>
             <textField>
-                <reportElement x="100" y="50" width="230" height="16"
-                               />
-                <textFieldExpression><![CDATA[$P{pacienteCorreo}]]></textFieldExpression>
+                <reportElement x="120" y="48" width="200" height="16"/>
+                <textFieldExpression><![CDATA[$P{citaCodigo}]]></textFieldExpression>
             </textField>
 
             <staticText>
-                <reportElement x="260" y="0" width="280" height="16"
-                               />
+                <reportElement x="0" y="72" width="110" height="16"/>
                 <textElement>
                     <font isBold="true"/>
                 </textElement>
-                <text><![CDATA[Notas / Comentarios importantes:]]></text>
+                <text><![CDATA[Estado:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="120" y="72" width="200" height="16"/>
+                <textFieldExpression><![CDATA[$P{citaEstado}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="0" y="96" width="110" height="16"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Fecha:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="120" y="96" width="250" height="16"/>
+                <textFieldExpression><![CDATA[$P{citaFecha}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="0" y="130" width="110" height="16"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Observaciones:]]></text>
             </staticText>
 
             <textField isStretchWithOverflow="true">
-                <reportElement x="260" y="20" width="280" height="120"
-                               />
+                <reportElement x="0" y="150" width="520" height="40"/>
                 <textElement verticalAlignment="Top">
                     <font size="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{pacienteNotas}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{citaObservaciones}]]></textFieldExpression>
             </textField>
 
         </band>
@@ -178,8 +154,7 @@
     <columnFooter>
         <band height="40" splitType="Stretch">
             <textField>
-                <reportElement x="0" y="10" width="200" height="20"
-                               />
+                <reportElement x="0" y="10" width="200" height="20"/>
                 <textElement>
                     <font size="9"/>
                 </textElement>
@@ -187,8 +162,7 @@
             </textField>
 
             <textField>
-                <reportElement x="200" y="10" width="355" height="20"
-                              />
+                <reportElement x="200" y="10" width="355" height="20"/>
                 <textElement textAlignment="Right">
                     <font size="9"/>
                 </textElement>

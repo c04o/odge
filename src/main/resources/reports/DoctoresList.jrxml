@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="DoctoresList"
+              pageWidth="595" pageHeight="842"
+              columnWidth="515" leftMargin="40" rightMargin="40"
+              topMargin="40" bottomMargin="40"
+              uuid="22222222-2222-2222-2222-222222222222">
+
+    <style name="ColumnHeader"
+           mode="Opaque"
+           backcolor="#E0F2F4"
+           isBold="true">
+        <box>
+            <pen lineWidth="0.5" lineColor="#CCCCCC"/>
+        </box>
+    </style>
+
+    <style name="DetailCell"
+           fontSize="10">
+        <box>
+            <pen lineWidth="0.25" lineColor="#DDDDDD"/>
+        </box>
+    </style>
+
+    <parameter name="tituloReporte" class="java.lang.String"/>
+    <parameter name="fechaEmision" class="java.util.Date"/>
+
+    <field name="nombre" class="java.lang.String"/>
+    <field name="codigo" class="java.lang.String"/>
+    <field name="especialidad" class="java.lang.String"/>
+    <field name="disponibilidad" class="java.lang.String"/>
+    <field name="notas" class="java.lang.String"/>
+
+    <title>
+        <band height="80">
+            <rectangle>
+                <reportElement x="0" y="0" width="515" height="80"
+                               backcolor="#0E97A1" mode="Opaque"/>
+            </rectangle>
+
+            <staticText>
+                <reportElement x="10" y="10" width="350" height="24"/>
+                <textElement>
+                    <font fontName="Lucida Console" size="16"/>
+                </textElement>
+                <text><![CDATA[ODGE – Sistema de Gestión Odontológica]]></text>
+            </staticText>
+
+            <image>
+                <reportElement x="435" y="10" width="60" height="60"/>
+                <imageExpression><![CDATA["logo_odge.png"]]></imageExpression>
+            </image>
+        </band>
+    </title>
+
+    <pageHeader>
+        <band height="30">
+            <textField>
+                <reportElement x="0" y="5" width="260" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{tituloReporte}]]></textFieldExpression>
+            </textField>
+
+            <textField pattern="dd/MM/yyyy HH:mm">
+                <reportElement x="260" y="5" width="255" height="20"/>
+                <textElement textAlignment="Right">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Fecha de emisión: " + $P{fechaEmision}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageHeader>
+
+    <columnHeader>
+        <band height="22">
+            <staticText>
+                <reportElement x="0" y="2" width="140" height="18" style="ColumnHeader"/>
+                <text><![CDATA[Nombre del odontólogo]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="140" y="2" width="80" height="18" style="ColumnHeader"/>
+                <text><![CDATA[Código]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="220" y="2" width="95" height="18" style="ColumnHeader"/>
+                <text><![CDATA[Especialidad]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="315" y="2" width="100" height="18" style="ColumnHeader"/>
+                <text><![CDATA[Disponibilidad]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="415" y="2" width="100" height="18" style="ColumnHeader"/>
+                <text><![CDATA[Notas]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="20">
+            <textField>
+                <reportElement x="0" y="1" width="140" height="18" style="DetailCell"/>
+                <textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="140" y="1" width="80" height="18" style="DetailCell"/>
+                <textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="220" y="1" width="95" height="18" style="DetailCell"/>
+                <textFieldExpression><![CDATA[$F{especialidad}]]></textFieldExpression>
+            </textField>
+
+            <textField isStretchWithOverflow="true">
+                <reportElement x="315" y="1" width="100" height="18" style="DetailCell"/>
+                <textFieldExpression><![CDATA[$F{disponibilidad}]]></textFieldExpression>
+            </textField>
+
+            <textField isStretchWithOverflow="true">
+                <reportElement x="415" y="1" width="100" height="18" style="DetailCell"/>
+                <textFieldExpression><![CDATA[$F{notas}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <pageFooter>
+        <band height="20">
+            <textField>
+                <reportElement x="0" y="0" width="515" height="20"/>
+                <textElement textAlignment="Center">
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Sistema ODGE – Universidad Americana – Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+
+</jasperReport>

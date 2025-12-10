@@ -8,33 +8,38 @@ import org.openxava.annotations.Stereotype;
 
 import javax.persistence.*;
 
-@Entity // Indica que esta clase es una tabla en la base de datos
+@Entity
 @Table(name = "personal_limpieza")
 @Getter
 @Setter
-public class PersonalLimpieza {
+public class PersonalLimpieza
+{
 
     @Id
-    @GeneratedValue(generator = "system-uuid") // Genera un UUID único para el registro
+    @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     @Column(length = 36)
-    private String oid; // Identificador principal
+    private String oid;
 
-    @Required(message = "El nombre del personal de limpieza no puede quedar vacío.") // Validación en OpenXava
+    @Required(message = "El nombre del personal de limpieza no puede quedar vacío.")
     @Column(length = 120, nullable = false)
-    private String nombre; // Nombre completo del personal
+    private String nombre;
+
+    // NUEVO: identificación propia del personal de limpieza
+    @Column(length = 30, unique = true)
+    private String identificacion;   // Ej. código interno, cédula, etc.
 
     @Column(length = 30)
-    private String telefono; // Número de contacto (opcional)
+    private String telefono;
 
     @Column(length = 100)
-    private String correo; // Correo electrónico (opcional)
+    private String correo;
 
     @Column(length = 80)
-    private String turno; // Ej: "Mañana", "Tarde", "08:00-12:00"
+    private String turno;
 
     @Stereotype("MEMO")
-    @Column(length=500)
+    @Column(length = 500)
     private String notas;
-
 }
+

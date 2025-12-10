@@ -4,8 +4,15 @@
     <file url="file://$PROJECT_DIR$/src/main/java" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/main/resources/logo_odge.png" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/logo_odge.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/reports/CitaFicha.jrxml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/reports/CitasList.jrxml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/reports/DoctorFicha.jrxml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/reports/DoctoresList.jrxml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/reports/MaterialList.jrxml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/reports/OdgeTemplate.jrxml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/reports/PacientesList.jrxml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/reports/PersonalLimpiezaFicha.jrxml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/reports/PersonalLimpiezaList.jrxml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/reports/SampleBaseReport.jrxml" charset="ISO-8859-1" />
   </component>
 </project>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="PersonalLimpiezaList"
+              pageWidth="595" pageHeight="842"
+              columnWidth="515" leftMargin="40" rightMargin="40"
+              topMargin="40" bottomMargin="40"
+              uuid="33333333-3333-3333-3333-333333333333">
+
+    <style name="ColumnHeader"
+           mode="Opaque"
+           backcolor="#E0F2F4"
+           isBold="true">
+        <box>
+            <pen lineWidth="0.5" lineColor="#CCCCCC"/>
+        </box>
+    </style>
+
+    <style name="DetailCell"
+           fontSize="10">
+        <box>
+            <pen lineWidth="0.25" lineColor="#DDDDDD"/>
+        </box>
+    </style>
+
+    <parameter name="tituloReporte" class="java.lang.String"/>
+    <parameter name="fechaEmision" class="java.util.Date"/>
+
+    <field name="nombre"        class="java.lang.String"/>
+    <field name="identificacion" class="java.lang.String"/>
+    <field name="telefono"      class="java.lang.String"/>
+    <field name="correo"        class="java.lang.String"/>
+    <field name="turno"         class="java.lang.String"/>
+    <field name="notas"         class="java.lang.String"/>
+
+
+    <title>
+        <band height="80">
+            <rectangle>
+                <reportElement x="0" y="0" width="515" height="80"
+                               backcolor="#0E97A1" mode="Opaque"/>
+            </rectangle>
+
+            <staticText>
+                <reportElement x="10" y="10" width="350" height="24"/>
+                <textElement>
+                    <font fontName="Lucida Console" size="16"/>
+                </textElement>
+                <text><![CDATA[ODGE – Sistema de Gestión Odontológica]]></text>
+            </staticText>
+
+            <image>
+                <reportElement x="435" y="10" width="60" height="60"/>
+                <imageExpression><![CDATA["logo_odge.png"]]></imageExpression>
+            </image>
+        </band>
+    </title>
+
+    <pageHeader>
+        <band height="30">
+            <textField>
+                <reportElement x="0" y="5" width="260" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{tituloReporte}]]></textFieldExpression>
+            </textField>
+
+            <textField pattern="dd/MM/yyyy HH:mm">
+                <reportElement x="260" y="5" width="255" height="20"/>
+                <textElement textAlignment="Right">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Fecha de emisión: " + $P{fechaEmision}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageHeader>
+
+    <columnHeader>
+        <band height="22">
+            <staticText>
+                <reportElement x="0"   y="2" width="100" height="18" style="ColumnHeader"/>
+                <text><![CDATA[Nombre]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="100" y="2" width="80"  height="18" style="ColumnHeader"/>
+                <text><![CDATA[Identificación]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="180" y="2" width="80"  height="18" style="ColumnHeader"/>
+                <text><![CDATA[Teléfono]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="260" y="2" width="110" height="18" style="ColumnHeader"/>
+                <text><![CDATA[Correo]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="370" y="2" width="80" height="18" style="ColumnHeader"/>
+                <text><![CDATA[Turno]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="450" y="2" width="105" height="18" style="ColumnHeader"/>
+                <text><![CDATA[Notas]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+
+    <detail>
+        <band height="20">
+            <textField>
+                <reportElement x="0"   y="1" width="100" height="18" style="DetailCell"/>
+                <textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="100" y="1" width="80"  height="18" style="DetailCell"/>
+                <textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="180" y="1" width="80"  height="18" style="DetailCell"/>
+                <textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="260" y="1" width="110" height="18" style="DetailCell"/>
+                <textFieldExpression><![CDATA[$F{correo}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="370" y="1" width="80"  height="18" style="DetailCell"/>
+                <textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
+            </textField>
+
+            <textField isStretchWithOverflow="true">
+                <reportElement x="450" y="1" width="105" height="18" style="DetailCell"/>
+                <textFieldExpression><![CDATA[$F{notas}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <pageFooter>
+        <band height="20">
+            <textField>
+                <reportElement x="0" y="0" width="515" height="20"/>
+                <textElement textAlignment="Center">
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Sistema ODGE – Universidad Americana – Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+
+</jasperReport>
+

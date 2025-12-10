@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="MaterialList"
+              pageWidth="595" pageHeight="842"
+              columnWidth="555" leftMargin="20" rightMargin="20"
+              topMargin="20" bottomMargin="20"
+              uuid="77777777-8888-9999-aaaa-bbbbbbbbbbbb">
+
+    <!-- Parámetros que usas en PrintMaterialListAction -->
+    <parameter name="fechaEmision"  class="java.util.Date"/>
+    <parameter name="tituloReporte" class="java.lang.String"/>
+
+    <!-- Igual que en tu DoctorFicha: queryString va aquí -->
+    <queryString><![CDATA[]]></queryString>
+
+    <!-- Campos de la entidad Material (JRBeanCollectionDataSource) -->
+    <field name="oid"         class="java.lang.String"/>
+    <field name="nombre"      class="java.lang.String"/>
+    <field name="categoria"   class="java.lang.String"/>
+    <field name="stockActual" class="java.lang.Integer"/>
+    <field name="stockMinimo" class="java.lang.Integer"/>
+    <field name="notas"       class="java.lang.String"/>
+
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+
+    <!-- Encabezado con barra turquesa y logo, estilo ODGE -->
+    <title>
+        <band height="80" splitType="Stretch">
+            <rectangle>
+                <reportElement x="-20" y="-20" width="595" height="90"
+                               mode="Opaque" backcolor="#0E97A1"/>
+            </rectangle>
+
+            <staticText>
+                <reportElement x="0" y="10" width="390" height="24"/>
+                <textElement>
+                    <font fontName="Lucida Console" size="16" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ODGE – Sistema de Gestión Odontológica]]></text>
+            </staticText>
+
+            <image>
+                <reportElement x="480" y="-5" width="74" height="60"/>
+                <imageExpression><![CDATA["logo_odge.png"]]></imageExpression>
+            </image>
+        </band>
+    </title>
+
+    <!-- Encabezado de página: título listado + fecha -->
+    <pageHeader>
+        <band height="40" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="8" width="260" height="20"/>
+                <textElement>
+                    <font size="13" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{tituloReporte}]]></textFieldExpression>
+            </textField>
+
+            <textField pattern="dd/MM/yyyy HH:mm">
+                <reportElement x="260" y="8" width="295" height="20"/>
+                <textElement textAlignment="Right">
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Fecha de emisión: " + $P{fechaEmision}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageHeader>
+
+    <!-- Cabecera de columnas de la tabla de materiales -->
+    <columnHeader>
+        <band height="28" splitType="Stretch">
+
+            <!-- ID -->
+            <staticText>
+                <reportElement x="0" y="8" width="60" height="18"/>
+                <textElement textAlignment="Left">
+                    <font isBold="true" size="10"/>
+                </textElement>
+                <text><![CDATA[ID]]></text>
+            </staticText>
+
+            <!-- Nombre -->
+            <staticText>
+                <reportElement x="60" y="8" width="160" height="18"/>
+                <textElement textAlignment="Left">
+                    <font isBold="true" size="10"/>
+                </textElement>
+                <text><![CDATA[Nombre]]></text>
+            </staticText>
+
+            <!-- Categoría -->
+            <staticText>
+                <reportElement x="220" y="8" width="100" height="18"/>
+                <textElement textAlignment="Left">
+                    <font isBold="true" size="10"/>
+                </textElement>
+                <text><![CDATA[Categoría]]></text>
+            </staticText>
+
+            <!-- Stock actual -->
+            <staticText>
+                <reportElement x="320" y="8" width="60" height="18"/>
+                <textElement textAlignment="Right">
+                    <font isBold="true" size="10"/>
+                </textElement>
+                <text><![CDATA[Stock]]></text>
+            </staticText>
+
+            <!-- Stock mínimo -->
+            <staticText>
+                <reportElement x="380" y="8" width="60" height="18"/>
+                <textElement textAlignment="Right">
+                    <font isBold="true" size="10"/>
+                </textElement>
+                <text><![CDATA[Stock mín.]]></text>
+            </staticText>
+
+            <!-- Notas -->
+            <staticText>
+                <reportElement x="440" y="8" width="115" height="18"/>
+                <textElement textAlignment="Left">
+                    <font isBold="true" size="10"/>
+                </textElement>
+                <text><![CDATA[Notas]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <!-- Detalle: cada fila es un Material -->
+    <detail>
+        <band height="18" splitType="Stretch">
+
+            <!-- ID (oid) -->
+            <textField isStretchWithOverflow="true">
+                <reportElement x="0" y="0" width="60" height="18"/>
+                <textElement>
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{oid}]]></textFieldExpression>
+            </textField>
+
+            <!-- Nombre -->
+            <textField isStretchWithOverflow="true">
+                <reportElement x="60" y="0" width="160" height="18"/>
+                <textElement>
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+            </textField>
+
+            <!-- Categoría -->
+            <textField isStretchWithOverflow="true">
+                <reportElement x="220" y="0" width="100" height="18"/>
+                <textElement>
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{categoria}]]></textFieldExpression>
+            </textField>
+
+            <!-- Stock actual -->
+            <textField>
+                <reportElement x="320" y="0" width="60" height="18"/>
+                <textElement textAlignment="Right">
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{stockActual}]]></textFieldExpression>
+            </textField>
+
+            <!-- Stock mínimo -->
+            <textField>
+                <reportElement x="380" y="0" width="60" height="18"/>
+                <textElement textAlignment="Right">
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{stockMinimo}]]></textFieldExpression>
+            </textField>
+
+            <!-- Notas -->
+            <textField isStretchWithOverflow="true">
+                <reportElement x="440" y="0" width="115" height="18"/>
+                <textElement>
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{notas}]]></textFieldExpression>
+            </textField>
+
+        </band>
+    </detail>
+
+    <!-- Pie de columna con número de página y texto fijo -->
+    <columnFooter>
+        <band height="30" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="8" width="260" height="18"/>
+                <textElement>
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA["LISTADO DE MATERIALES"]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="260" y="8" width="295" height="18"/>
+                <textElement textAlignment="Right">
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Sistema ODGE – Universidad Americana – Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </columnFooter>
+
+    <pageFooter>
+        <band height="10" splitType="Stretch"/>
+    </pageFooter>
+
+    <summary>
+        <band height="10" splitType="Stretch"/>
+    </summary>
+
+</jasperReport>

@@ -29,15 +29,25 @@ public class Doctor {
     @Required(message = "El código del odontólogo no puede quedar vacío.")
     private String codigo; // Código interno único por odontólogo
 
-    @Column(length = 60)
-    private String especialidad; // Especialidad dental (opcional)
+    // ========= ESPECIALIDAD =========
+
+    // Combo con las 5 especialidades + "Otra"
+    @Stereotype("COMBO")
+    @Column(length = 50)
+    private String especialidad;
+
+    // Texto libre solo cuando el combo está en "Otra"
+    @Column(length = 80)
+    private String especialidadOtra;
+
+    // ========= DISPONIBILIDAD / NOTAS (igual que ya tenías) =========
 
     @Column(name = "disponibilidad", length = 200)
     private String disponibilidad;
     // Ejemplo: "L-V 08:00-16:00" ? horario base del odontólogo
 
     @Stereotype("MEMO")
-    @Column(length=500)
+    @Column(length = 500)
     private String notas;
 
     // Expresión regular para validar el formato del horario

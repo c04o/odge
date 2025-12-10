@@ -6,13 +6,19 @@ public class PrintDoctorReportAction extends PrintFichaBaseAction {
 
     @Override
     protected String getTituloReporte() {
-        return "Ficha Doctor";
+        return "Ficha del Odontólogo";
     }
 
     @Override
     protected String getCodigoReporte() {
-        String identificacion = getView().getValueString("identificacion");
-        return "DOC-" + (identificacion == null ? "" : identificacion);
+        String codigo = getView().getValueString("codigo");
+        return "DOC-" + (codigo == null ? "" : codigo);
+    }
+
+    @Override
+    protected String getJRXML() {
+        // La plantilla individual del doctor
+        return "DoctorFicha.jrxml";
     }
 
     @Override
@@ -20,13 +26,12 @@ public class PrintDoctorReportAction extends PrintFichaBaseAction {
     protected Map getParameters() throws Exception {
         Map params = super.getParameters();
 
-        // Ajusta los nombres de propiedad si en Doctor.java se llaman distinto
-        params.put("pacienteNombre", getView().getValueString("nombre"));
-        params.put("pacienteIdentificacion", getView().getValueString("identificacion"));
-        params.put("pacienteFechaNacimiento", getView().getValueString("fechaNacimiento"));
-        params.put("pacienteTelefono", getView().getValueString("telefono"));
-        params.put("pacienteCorreo", getView().getValueString("correoElectronico"));
-        params.put("pacienteNotas", getView().getValueString("notas"));
+        // === PARÁMETROS QUE EXISTEN EN DoctorFicha.jrxml ===
+        params.put("doctorNombre", getView().getValueString("nombre"));
+        params.put("doctorCodigo", getView().getValueString("codigo"));
+        params.put("doctorEspecialidad", getView().getValueString("especialidad"));
+        params.put("doctorDisponibilidad", getView().getValueString("disponibilidad"));
+        params.put("doctorNotas", getView().getValueString("notas"));
 
         return params;
     }

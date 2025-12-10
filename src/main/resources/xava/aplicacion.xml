@@ -1,5 +1,4 @@
-<?xml version = "1.0" encoding = "ISO-8859-1"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE aplicacion SYSTEM "dtds/aplicacion.dtd">
 
 <aplicacion nombre="odge">
@@ -8,34 +7,39 @@
         <controlador nombre="Typical"/>
     </modulo-defecto>
 
-    <modulo nombre="Paciente">
-        <modelo nombre="Paciente"/>
-        <controlador nombre="Typical"/>
-        <controlador nombre="PacienteReport"/>
-    </modulo>
-
+    <!-- DOCTOR -->
     <modulo nombre="Doctor">
         <modelo nombre="Doctor"/>
-        <controlador nombre="Typical"/>
-        <controlador nombre="DoctorReport"/>
+        <controlador nombre="DoctorReport"/>          <!-- ficha + CRUD -->
+        <controlador nombre="DoctoresListReport"/>    <!-- listado -->
     </modulo>
 
+    <!-- MATERIAL -->
     <modulo nombre="Material">
         <modelo nombre="Material"/>
-        <controlador nombre="Typical"/>
-        <controlador nombre="MaterialReport"/>
+        <controlador nombre="MaterialReport"/>        <!-- ficha + CRUD -->
+        <controlador nombre="MaterialesListReport"/>  <!-- listado -->
     </modulo>
 
+    <!-- PERSONAL DE LIMPIEZA -->
     <modulo nombre="PersonalLimpieza">
         <modelo nombre="PersonalLimpieza"/>
-        <controlador nombre="Typical"/>
-        <controlador nombre="PersonalLimpiezaReport"/>
+        <controlador nombre="PersonalLimpiezaReport"/>       <!-- ficha + CRUD -->
+        <controlador nombre="PersonalLimpiezaListReport"/>   <!-- listado -->
     </modulo>
 
+    <!-- CITA -->
     <modulo nombre="Cita">
         <modelo nombre="Cita"/>
-        <controlador nombre="Typical"/>
         <controlador nombre="CitaReport"/>
+        <controlador nombre="CitasListReport"/>
+    </modulo>
+
+    <!-- PACIENTE -->
+    <modulo nombre="Paciente">
+        <modelo nombre="Paciente"/>
+        <controlador nombre="PacienteReport"/>
+        <controlador nombre="PacientesListReport"/>
     </modulo>
 
 </aplicacion>

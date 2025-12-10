@@ -16,7 +16,7 @@ import javax.validation.constraints.Min;
 public class Material {
 
     @Id
-    @GeneratedValue(generator = "system-uuid") // Genera un UUID como identificador
+    @GeneratedValue(generator = "syst   em-uuid") // Genera un UUID como identificador
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     @Column(length = 36)
     private String oid;

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="PersonalLimpiezaFicha"
+              pageWidth="595" pageHeight="842"
+              columnWidth="555" leftMargin="20" rightMargin="20"
+              topMargin="20" bottomMargin="20">
+
+    <parameter name="fechaEmision" class="java.util.Date"/>
+    <parameter name="codigoReporte" class="java.lang.String"/>
+    <parameter name="tituloReporte" class="java.lang.String"/>
+
+    <parameter name="personalNombre"  class="java.lang.String"/>
+    <parameter name="personalTelefono" class="java.lang.String"/>
+    <parameter name="personalCorreo"   class="java.lang.String"/>
+    <parameter name="personalTurno"    class="java.lang.String"/>
+    <parameter name="personalNotas"    class="java.lang.String"/>
+
+    <queryString><![CDATA[]]></queryString>
+
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+
+    <title>
+        <band height="87" splitType="Stretch">
+            <rectangle>
+                <reportElement mode="Opaque"
+                               x="-20" y="-20"
+                               width="595" height="89"
+                               backcolor="#0E97A1"/>
+                <graphicElement>
+                    <pen lineWidth="0.0" lineStyle="Dotted"/>
+                </graphicElement>
+            </rectangle>
+
+            <staticText>
+                <reportElement x="0" y="9" width="390" height="30"/>
+                <textElement>
+                    <font fontName="Lucida Console" size="16"/>
+                </textElement>
+                <text><![CDATA[ODGE – Sistema de Gestión Odontológica]]></text>
+            </staticText>
+
+            <image>
+                <reportElement x="480" y="-11" width="74" height="70"/>
+                <imageExpression><![CDATA["logo_odge.png"]]></imageExpression>
+            </image>
+        </band>
+    </title>
+
+    <pageHeader>
+        <band height="54" splitType="Stretch">
+            <textField>
+                <reportElement x="10" y="12" width="260" height="30"/>
+                <textElement>
+                    <font size="13" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{tituloReporte}]]></textFieldExpression>
+            </textField>
+
+            <textField pattern="dd/MM/yyyy HH:mm">
+                <reportElement x="300" y="12" width="260" height="30"/>
+                <textElement textAlignment="Right">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{fechaEmision}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageHeader>
+
+    <columnHeader>
+        <band height="35" splitType="Stretch">
+            <staticText>
+                <reportElement x="10" y="10" width="90" height="18"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Nombre:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="100" y="10" width="420" height="18"/>
+                <textFieldExpression><![CDATA[$P{personalNombre}]]></textFieldExpression>
+            </textField>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="140" splitType="Stretch">
+
+            <staticText>
+                <reportElement x="10" y="5" width="90" height="18"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Teléfono:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="100" y="5" width="200" height="18"/>
+                <textFieldExpression><![CDATA[$P{personalTelefono}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="10" y="27" width="90" height="18"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Correo:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="100" y="27" width="250" height="18"/>
+                <textFieldExpression><![CDATA[$P{personalCorreo}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="10" y="49" width="90" height="18"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Turno:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="100" y="49" width="250" height="18"/>
+                <textFieldExpression><![CDATA[$P{personalTurno}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="10" y="75" width="90" height="18"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Notas:]]></text>
+            </staticText>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="100" y="75" width="410" height="60"/>
+                <textFieldExpression><![CDATA[$P{personalNotas}]]></textFieldExpression>
+            </textField>
+
+        </band>
+    </detail>
+
+    <columnFooter>
+        <band height="50" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="20" width="200" height="20"/>
+                <textFieldExpression><![CDATA["CÓDIGO: " + $P{codigoReporte}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="250" y="20" width="305" height="20"/>
+                <textElement textAlignment="Right">
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Sistema ODGE – Universidad Americana – Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </columnFooter>
+
+    <pageFooter>
+        <band height="20" splitType="Stretch"/>
+    </pageFooter>
+
+    <summary>
+        <band height="20" splitType="Stretch"/>
+    </summary>
+
+</jasperReport>

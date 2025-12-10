@@ -1,10 +1,9 @@
-<?xml version = "1.0" encoding = "ISO-8859-1"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE controladores SYSTEM "dtds/controladores.dtd">
 
 <controladores>
 
-    <!-- Paciente -->
+    <!-- PACIENTE: ficha -->
     <controlador nombre="PacienteReport">
         <hereda-de controlador="Typical"/>
         <accion nombre="imprimirFicha"
@@ -12,7 +11,7 @@
                 clase="acciones.PrintPacienteReportAction"/>
     </controlador>
 
-    <!-- Doctor -->
+    <!-- DOCTOR: ficha -->
     <controlador nombre="DoctorReport">
         <hereda-de controlador="Typical"/>
         <accion nombre="imprimirFicha"
@@ -20,7 +19,7 @@
                 clase="acciones.PrintDoctorReportAction"/>
     </controlador>
 
-    <!-- Material -->
+    <!-- MATERIAL: ficha -->
     <controlador nombre="MaterialReport">
         <hereda-de controlador="Typical"/>
         <accion nombre="imprimirFicha"
@@ -28,7 +27,7 @@
                 clase="acciones.PrintMaterialReportAction"/>
     </controlador>
 
-    <!-- Personal de limpieza -->
+    <!-- PERSONAL LIMPIEZA: ficha -->
     <controlador nombre="PersonalLimpiezaReport">
         <hereda-de controlador="Typical"/>
         <accion nombre="imprimirFicha"
@@ -36,12 +35,52 @@
                 clase="acciones.PrintPersonalLimpiezaReportAction"/>
     </controlador>
 
-    <!-- Cita -->
+    <!-- CITA: ficha -->
     <controlador nombre="CitaReport">
         <hereda-de controlador="Typical"/>
         <accion nombre="imprimirFicha"
                 icono="printer"
                 clase="acciones.PrintCitaReportAction"/>
+    </controlador>
+
+    <!-- LISTADO PACIENTES -->
+    <controlador nombre="PacientesListReport">
+        <accion nombre="imprimirListadoPacientes"
+                icono="printer"
+                modo="list"
+                clase="acciones.PrintPacientesListAction"/>
+    </controlador>
+
+    <!-- LISTADO CITAS -->
+    <controlador nombre="CitasListReport">
+        <accion nombre="imprimirListadoCitas"
+                icono="printer"
+                modo="list"
+                clase="acciones.PrintCitasListAction"/>
+    </controlador>
+
+    <!-- LISTADO DOCTORES -->
+    <controlador nombre="DoctoresListReport">
+        <accion nombre="imprimirListadoDoctores"
+                icono="printer"
+                modo="list"
+                clase="acciones.PrintDoctoresListAction"/>
+    </controlador>
+
+    <!-- LISTADO MATERIALES -->
+    <controlador nombre="MaterialesListReport">
+        <accion nombre="imprimirListadoMateriales"
+                icono="printer"
+                modo="list"
+                clase="acciones.PrintMaterialListAction"/>
+    </controlador>
+
+    <!-- LISTADO PERSONAL LIMPIEZA -->
+    <controlador nombre="PersonalLimpiezaListReport">
+        <accion nombre="imprimirListadoPersonalLimpieza"
+                icono="printer"
+                modo="list"
+                clase="acciones.PrintPersonalLimpiezaListAction"/>
     </controlador>
 
 </controladores>

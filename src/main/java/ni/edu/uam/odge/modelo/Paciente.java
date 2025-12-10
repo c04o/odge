@@ -3,8 +3,12 @@ package ni.edu.uam.odge.modelo;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.openxava.annotations.Hidden;
 import org.openxava.annotations.Required;
 import org.openxava.annotations.Stereotype;
+import java.time.format.DateTimeFormatter;
+import org.openxava.annotations.Depends;
+
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -42,6 +46,13 @@ public class Paciente {
     @Column(length=500)
     private String notas;
 
+    @Hidden
+    @Depends("fechaNacimiento")
+    public String getFechaNacimientoTexto() {
+        if (fechaNacimiento == null) return "";
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return fechaNacimiento.format(fmt);
+    }
 
     @PrePersist
     @PreUpdate
